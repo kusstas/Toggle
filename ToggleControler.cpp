@@ -1,10 +1,5 @@
 #include "ToggleControler.h"
 
-ToggleController::ToggleController()
-{
-
-}
-
 bool ToggleController::state() const
 {
     return state_;

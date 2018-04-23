@@ -10,8 +10,6 @@ class ToggleController : public QQuickItem
 
 public:
 
-    ToggleController();
-
     bool state() const;
 
 signals:

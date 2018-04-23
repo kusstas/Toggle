@@ -9,6 +9,11 @@ Item  {
     property alias bgColor: bg.color
     property alias switcherColor: switcher.color
     property alias scaleSwitcher: switcher.scale
+    property alias switcherBorder: switcher.border
+    property alias textOn: switcher.textOn
+    property alias textOff: switcher.textOff
+    property alias scaleFont: switcher.scaleFont
+    property alias durationFix: animSwitcherFix.duration
 
     state: false
 
@@ -48,6 +53,11 @@ Item  {
         property int fixR: originX + valueFix
         property int fixL: originX - valueFix
 
+        property string textOn: "ON"
+        property string textOff: "OFF"
+
+        property real scaleFont: 0.25
+
         width: parent.height
         height: parent.height
         radius: height / 2
@@ -61,11 +71,11 @@ Item  {
             id : textState
             x : (parent.width - width) / 2
             y : (parent.height - height) / 2
-            font.pointSize: switcher.height / 5
+            font.pixelSize: switcher.height * switcher.scaleFont
             font.family: "Arial"
             font.bold: true
             color: "#607D8B"
-            text : switcher.x > switcher.originX ? "ON" : "OFF"
+            text : switcher.x > switcher.originX ?  textOn : textOff
         }
 
         DropShadow {

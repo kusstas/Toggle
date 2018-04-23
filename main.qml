@@ -13,23 +13,7 @@ ApplicationWindow {
     color: "#263238"
     title: qsTr("@kusstas - Toggle")
 
-    //flags : Qt.CustomizeWindowHint | Qt.Window
-
-    Rectangle {
-        width: 100
-        height: 100
-        color: "red"
-
-        MouseArea{
-            anchors.fill: parent
-
-            onPressed: {
-                toggle.state = !toggle.state
-            }
-        }
-    }
-
-    Toggle{
+    Toggle {
         id : toggle
         anchors.centerIn: parent
         height: 250
