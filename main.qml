@@ -13,10 +13,8 @@ ApplicationWindow {
     color: "#263238"
     title: qsTr("@kusstas - Toggle")
 
-    flags: Qt.Window | Qt.FramelessWindowHint
-
     PanelControl {
-
+        id: customPanelControl
     }
 
     Toggle {
@@ -25,5 +23,18 @@ ApplicationWindow {
         height: 250
         width: 500
         state: true
+
+        onStateChanged: {
+            if (state) {
+                window.flags |= Qt.FramelessWindowHint
+                customPanelControl.visible = true
+                window.height += customPanelControl.height
+            }
+            else {
+                window.flags &= ~Qt.FramelessWindowHint
+                customPanelControl.visible = false
+                window.height -= customPanelControl.height
+            }
+        }
     }
 }

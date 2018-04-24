@@ -75,7 +75,7 @@ Rectangle {
             implicitWidth: height
 
             onClicked: {
-                if (window.visibility == ApplicationWindow.Maximized) {
+                if (window.visibility == ApplicationWindow.Maximized || window.visibility == ApplicationWindow.FullScreen) {
                     window.showNormal()
                 }
                 else {
