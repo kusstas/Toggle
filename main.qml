@@ -13,25 +13,10 @@ ApplicationWindow {
     color: "#263238"
     title: qsTr("@kusstas - Toggle")
 
-    flags: Qt.Window
+    flags: Qt.Window | Qt.FramelessWindowHint
 
     PanelControl {
-        onClose: {
-            window.close()
-        }
 
-        onResize: {
-            if (window.visibility == ApplicationWindow.Maximized) {
-                window.showNormal()
-            }
-            else {
-                window.showMaximized()
-            }
-        }
-
-        onHide: {
-            window.showMinimized()
-        }
     }
 
     Toggle {

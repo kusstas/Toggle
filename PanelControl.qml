@@ -1,12 +1,9 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.2
+import CustomControllers 1.0
 
 Rectangle {
-
-    signal close
-    signal hide
-    signal resize
 
     id: panelControl
     anchors {
@@ -18,8 +15,28 @@ Rectangle {
     height: 25
     color: "#CFD8DC"
 
+    MouseChecker {
+        id: mouseChecker
+    }
+
     MouseArea {
         anchors.fill: parent
+
+        property int offsetX: 0
+        property int offsetY: 0
+
+        onPressed: {
+            offsetX = mouseChecker.pos.x - window.x
+            offsetY = mouseChecker.pos.y - window.y
+        }
+
+        onMouseXChanged: {
+            window.setX(mouseChecker.pos.x - offsetX)
+        }
+
+        onMouseYChanged: {
+            window.setY(mouseChecker.pos.y - offsetY)
+        }
     }
 
     RowLayout {
@@ -43,7 +60,7 @@ Rectangle {
             implicitWidth: height
 
             onClicked: {
-                close();
+                window.close();
             }
 
             text: "X"
@@ -58,7 +75,12 @@ Rectangle {
             implicitWidth: height
 
             onClicked: {
-                resize();
+                if (window.visibility == ApplicationWindow.Maximized) {
+                    window.showNormal()
+                }
+                else {
+                    window.showMaximized()
+                }
             }
 
             text: "▭"
@@ -73,7 +95,7 @@ Rectangle {
             implicitWidth: height
 
             onClicked: {
-                hide();
+                window.showMinimized()
             }
 
             text: "_"
